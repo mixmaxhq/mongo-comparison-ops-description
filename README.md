@@ -38,6 +38,7 @@ var description = regExpDescription.parse({
 
 ## Changelog
 
+* 1.2.2 Fixed bug where values were hardcoded :)
 * 1.2.1 Fix bug where passing a falsy value didn't parse properly.
 * 1.2.0 Can be used in the browser (use `npm build` and consume the file `dist/browser/index.js`)
 * 1.1.1 Reordered `supportedOperators` to put more commonly used `contains` first.

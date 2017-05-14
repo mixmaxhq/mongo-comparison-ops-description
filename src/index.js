@@ -12,15 +12,15 @@ function create(operator, value) {
   if (operator === 'equal to') {
     return { $eq: value };
   } else if (operator === 'greater than') {
-    return { $gt: 1 };
+    return { $gt: value };
   } else if (operator === 'greater than or equal to') {
-    return { $gte: 1 };
+    return { $gte: value };
   } else if (operator === 'less than') {
-    return { $lt: 1 };
+    return { $lt: value };
   } else if (operator === 'less than or equal to') {
-    return { $lte: 1 };
+    return { $lte: value };
   } else if (operator === 'not equal to') {
-    return { $ne: 1 };
+    return { $ne: value };
   }
 }
 
