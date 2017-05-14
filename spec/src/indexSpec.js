@@ -75,6 +75,20 @@ describe('mongo-comparison-ops-description', () => {
     });
 
     describe('special cases', () => {
+      it('should work for empty strings', () => {
+        expect(comparisonDescription.parse({ $eq: '' })).toEqual({
+          operator: 'equal to',
+          value: ''
+        });
+      });
+
+      it('should work for 0', () => {
+        expect(comparisonDescription.parse({ $eq: 0 })).toEqual({
+          operator: 'equal to',
+          value: 0
+        });
+      });
+
       it('should throw for a unhandled operator', () => {
         expect(() => comparisonDescription.create('blah', 1)).toThrow();
       });

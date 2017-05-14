@@ -28,17 +28,17 @@ function create(operator, value) {
  * Reverses create() - returns an object with `operator` and `value` keys. Returns null if unrecognized query.
  */
 function parse(query) {
-  if (query.$eq) {
+  if ('$eq' in query) {
     return { operator: 'equal to', value: query.$eq };
-  } else if (query.$gt) {
+  } else if ('$gt' in query) {
     return { operator: 'greater than', value: query.$gt };
-  } else if (query.$gte) {
+  } else if ('$gte' in query) {
     return { operator: 'greater than or equal to', value: query.$gte };
-  } else if (query.$lt) {
+  } else if ('$lt' in query) {
     return { operator: 'less than', value: query.$lt };
-  } else if (query.$lte) {
+  } else if ('$lte' in query) {
     return { operator: 'less than or equal to', value: query.$lte };
-  } else if (query.$ne) {
+  } else if ('$ne' in query) {
     return { operator: 'not equal to', value: query.$ne };
   } else {
     return null;
