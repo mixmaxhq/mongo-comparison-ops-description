@@ -11,7 +11,7 @@ describe('mongo-comparison-ops-description', () => {
     });
 
     it('should work for "greater than"', () => {
-      expect(comparisonDescription.create('greater than', 1)).toEqual({ $gt: 1 });
+      expect(comparisonDescription.create('greater than', 2)).toEqual({ $gt: 2 });
     });
 
     it('should work for "greater than or equal to"', () => {
@@ -19,15 +19,15 @@ describe('mongo-comparison-ops-description', () => {
     });
 
     it('should work for "less than"', () => {
-      expect(comparisonDescription.create('less than', 1)).toEqual({ $lt: 1 });
+      expect(comparisonDescription.create('less than', 11)).toEqual({ $lt: 11 });
     });
 
     it('should work for "less than or equal to"', () => {
-      expect(comparisonDescription.create('less than or equal to', 1)).toEqual({ $lte: 1 });
+      expect(comparisonDescription.create('less than or equal to', 13)).toEqual({ $lte: 13 });
     });
 
     it('should work for "not equal to"', () => {
-      expect(comparisonDescription.create('not equal to', 1)).toEqual({ $ne: 1 });
+      expect(comparisonDescription.create('not equal to', -1)).toEqual({ $ne: -1 });
     });
   });
 
