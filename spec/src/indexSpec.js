@@ -29,6 +29,14 @@ describe('mongo-comparison-ops-description', () => {
     it('should work for "not equal to"', () => {
       expect(comparisonDescription.create('not equal to', -1)).toEqual({ $ne: -1 });
     });
+
+    it('should work for "is empty"', () => {
+      expect(comparisonDescription.create('is empty')).toEqual({ $in: [null, ''] });
+    });
+
+    it('should work for "is not empty"', () => {
+      expect(comparisonDescription.create('is not empty')).toEqual({ $exists: true, $nin: [null, ''] });
+    });
   });
 
   describe('parse', () => {
@@ -71,6 +79,18 @@ describe('mongo-comparison-ops-description', () => {
       expect(comparisonDescription.parse({ $ne: 1 })).toEqual({
         operator: 'not equal to',
         value: 1
+      });
+    });
+
+    it('should work for "is empty"', () => {
+      expect(comparisonDescription.parse({ $in: [null, ''] })).toEqual({
+        operator: 'is empty'
+      });
+    });
+
+    it('should work for "is not empty"', () => {
+      expect(comparisonDescription.parse({ $exists: true, $nin: [null, ''] })).toEqual({
+        operator: 'is not empty'
       });
     });
 
