@@ -1,27 +1,42 @@
-var supportedOperators = ['equal to', 'greater than', 'greater than or equal to', 'less than',
-  'less than or equal to', 'not equal to', 'is empty', 'is not empty'
+var supportedOperators = [
+  'equal to',
+  'greater than',
+  'greater than or equal to',
+  'less than',
+  'less than or equal to',
+  'not equal to',
+  'is empty',
+  'is not empty',
 ];
 
 // { $in: [null, ''] }
 function isIsEmptyQuery(query) {
-  const keys = Object.keys(query); 
+  const keys = Object.keys(query);
   if (keys.length !== 1) {
     return false;
   }
   const inValues = query.$in;
-  return Array.isArray(inValues) && inValues.length === 2 && 
-    inValues.indexOf(null) >= 0 && inValues.indexOf('') >= 0;
+  return (
+    Array.isArray(inValues) &&
+    inValues.length === 2 &&
+    inValues.indexOf(null) >= 0 &&
+    inValues.indexOf('') >= 0
+  );
 }
 
 // { $exists: true, $nin: [null, ''] }
 function isIsNotEmptyQuery(query) {
-  const keys = Object.keys(query);  
+  const keys = Object.keys(query);
   if (keys.length !== 2 || !query.$exists) {
     return false;
   }
   const ninValues = query.$nin;
-  return Array.isArray(ninValues) && ninValues.length === 2 && 
-    ninValues.indexOf(null) >= 0 && ninValues.indexOf('') >= 0;
+  return (
+    Array.isArray(ninValues) &&
+    ninValues.length === 2 &&
+    ninValues.indexOf(null) >= 0 &&
+    ninValues.indexOf('') >= 0
+  );
 }
 
 /**
@@ -68,7 +83,7 @@ function parse(query) {
     return { operator: 'not equal to', value: query.$ne };
   } else if (isIsEmptyQuery(query)) {
     return { operator: 'is empty' };
-  } else if (isIsNotEmptyQuery(query)) { 
+  } else if (isIsNotEmptyQuery(query)) {
     return { operator: 'is not empty' };
   } else {
     return null;

@@ -33,7 +33,10 @@ describe('mongo-comparison-ops-description', () => {
     });
 
     it('should work for "is not empty"', () => {
-      expect(comparisonDescription.create('is not empty')).toEqual({ $exists: true, $nin: [null, ''] });
+      expect(comparisonDescription.create('is not empty')).toEqual({
+        $exists: true,
+        $nin: [null, ''],
+      });
     });
   });
 
@@ -41,54 +44,54 @@ describe('mongo-comparison-ops-description', () => {
     it('should work for "equal to"', () => {
       expect(comparisonDescription.parse({ $eq: 1 })).toEqual({
         operator: 'equal to',
-        value: 1
+        value: 1,
       });
     });
 
     it('should work for "greater than"', () => {
       expect(comparisonDescription.parse({ $gt: 1 })).toEqual({
         operator: 'greater than',
-        value: 1
+        value: 1,
       });
     });
 
     it('should work for "greater than or equal to"', () => {
       expect(comparisonDescription.parse({ $gte: 1 })).toEqual({
         operator: 'greater than or equal to',
-        value: 1
+        value: 1,
       });
     });
 
     it('should work for "less than"', () => {
       expect(comparisonDescription.parse({ $lt: 1 })).toEqual({
         operator: 'less than',
-        value: 1
+        value: 1,
       });
     });
 
     it('should work for "less than or equal to"', () => {
       expect(comparisonDescription.parse({ $lte: 1 })).toEqual({
         operator: 'less than or equal to',
-        value: 1
+        value: 1,
       });
     });
 
     it('should work for "not equal to"', () => {
       expect(comparisonDescription.parse({ $ne: 1 })).toEqual({
         operator: 'not equal to',
-        value: 1
+        value: 1,
       });
     });
 
     it('should work for "is empty"', () => {
       expect(comparisonDescription.parse({ $in: [null, ''] })).toEqual({
-        operator: 'is empty'
+        operator: 'is empty',
       });
     });
 
     it('should work for "is not empty"', () => {
       expect(comparisonDescription.parse({ $exists: true, $nin: [null, ''] })).toEqual({
-        operator: 'is not empty'
+        operator: 'is not empty',
       });
     });
 
@@ -96,14 +99,14 @@ describe('mongo-comparison-ops-description', () => {
       it('should work for empty strings', () => {
         expect(comparisonDescription.parse({ $eq: '' })).toEqual({
           operator: 'equal to',
-          value: ''
+          value: '',
         });
       });
 
       it('should work for 0', () => {
         expect(comparisonDescription.parse({ $eq: 0 })).toEqual({
           operator: 'equal to',
-          value: 0
+          value: 0,
         });
       });
 
