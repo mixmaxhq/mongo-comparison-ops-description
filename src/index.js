@@ -44,25 +44,27 @@ function isIsNotEmptyQuery(query) {
  * See readme for supported values.
  */
 function create(operator, value) {
-  if (supportedOperators.indexOf(operator) < 0) throw new Error(`Unknown operator ${operator}`);
-
-  if (operator === 'equal to') {
-    return { $eq: value };
-  } else if (operator === 'greater than') {
-    return { $gt: value };
-  } else if (operator === 'greater than or equal to') {
-    return { $gte: value };
-  } else if (operator === 'less than') {
-    return { $lt: value };
-  } else if (operator === 'less than or equal to') {
-    return { $lte: value };
-  } else if (operator === 'not equal to') {
-    return { $ne: value };
-  } else if (operator === 'is empty') {
-    return { $in: [null, ''] };
-  } else if (operator === 'is not empty') {
-    return { $exists: true, $nin: [null, ''] };
+  if (supportedOperators.includes(operator)) {
+    switch (operator) {
+      case 'equal to':
+        return { $eq: value };
+      case 'greater than':
+        return { $gt: value };
+      case 'greater than or equal to':
+        return { $gte: value };
+      case 'less than':
+        return { $lt: value };
+      case 'less than or equal to':
+        return { $lte: value };
+      case 'not equal to':
+        return { $ne: value };
+      case 'is empty':
+        return { $in: [null, ''] };
+      case 'is not empty':
+        return { $exists: true, $nin: [null, ''] };
+    }
   }
+  throw new Error(`Unknown operator ${operator}`);
 }
 
 /**
